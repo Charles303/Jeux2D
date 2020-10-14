@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://strips/Depart.gd" type="Script" id=1]
+
+[node name="Depart" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( -64, -32, 1088, -32, 1088, 640, -64, 640 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 416.0
+margin_top = 128.0
+margin_right = 608.0
+margin_bottom = 192.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Button"]
+margin_right = 192.0
+margin_bottom = 64.0
+text = "START"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 288.0
+margin_top = 288.0
+margin_right = 736.0
+margin_bottom = 384.0
+text = "CONTROLS:
+MOUSE TO AIM
+SPACE OR LEFT CLICK TO SHOOT
+W OR UP TO MOVE FOWARD"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://strips/Joueur.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Balle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Signaux.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/WrapAround.tscn" type="PackedScene" id=4]
+
+[node name="Joueur" type="KinematicBody2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource( 1 )
+balle = ExtResource( 2 )
+signaux = ExtResource( 3 )
+
+[node name="canon" type="Polygon2D" parent="."]
+position = Vector2( 36, 0 )
+color = Color( 0, 0, 0, 0 )
+polygon = PoolVector2Array( 32, -4, 32, 4, 36, 4, 36, -4 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( 16, 0 )
+rotation = 1.5708
+scale = Vector2( 0.625, 0.833333 )
+polygon = PoolVector2Array( -1.11901e-06, -19.2, -25.6, 38.4, 25.6, 38.4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, -64 )
+rotation = 1.5708
+polygon = PoolVector2Array( 64, -32, 48, 16, 80, 16 )
+
+[node name="FormeJoueur" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="FormeJoueur"]
+position = Vector2( 0, -64 )
+rotation = 1.5708
+polygon = PoolVector2Array( 63.9999, -34.0002, 46.0001, 17.9998, 82.0001, 17.9997 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="FormeJoueur"]
+position = Vector2( 16, 0 )
+rotation = 1.5708
+scale = Vector2( 0.625, 0.833333 )
+polygon = PoolVector2Array( -1.11901e-06, -19.2, -25.6, 38.4, 25.6, 38.4 )
+
+[node name="WrapAround" parent="." instance=ExtResource( 4 )]
+[connection signal="mortJoueur" from="." to="." method="_on_Joueur_mortJoueur"]
+[connection signal="body_entered" from="FormeJoueur" to="." method="_on_FormeJoueur_body_entered"]
+[connection signal="body_shape_entered" from="FormeJoueur" to="." method="_on_FormeJoueur_body_shape_entered"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/Joueur.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/BodyAsteroid.tscn" type="PackedScene" id=2]
+[ext_resource path="res://strips/Main.gd" type="Script" id=3]
+[ext_resource path="res://scenes/Signaux.tscn" type="PackedScene" id=4]
+
+[node name="Main" type="Node"]
+script = ExtResource( 3 )
+
+[node name="Joueur" parent="." instance=ExtResource( 1 )]
+position = Vector2( 514, 290 )
+
+[node name="BodyAsteroid" parent="." instance=ExtResource( 2 )]
+position = Vector2( 680, -120 )
+
+[node name="Signaux" parent="." instance=ExtResource( 4 )]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
